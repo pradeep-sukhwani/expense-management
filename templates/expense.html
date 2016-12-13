@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Management</title>
+    <link rel="stylesheet" type="text/css" href="/styling/expense.css">
+    <script>    
+    if(typeof window.history.pushState == 'function') {
+        window.history.pushState({}, "/home");
+    }
+</script>
+</head>
+<body>
+    <h1>My Dashboard</h1>
+    <form>
+        <input type="text" name="particular" placeholder="Enter category like food, movie, shopping, etc">
+        <input type="text" name="amount" placeholder="Enter amount">
+        <input type="text" name="description" placeholder="Enter description">
+        {% if items_particular %}
+            {% for item in items_particular %}
+                <input type="hidden" name="particular" value="{{item}}">
+            {% endfor %}
+        {% endif %}
+
+        {% if items_amount %}
+            {% for item in items_amount %}
+                <input type="hidden" name="amount" value="{{item}}">
+            {% endfor %}
+        {% endif %}
+
+        {% if items_describe %}
+            {% for item in items_describe %}
+                <input type="hidden" name="description" value="{{item}}">
+            {% endfor %}
+        {% endif %}
+
+        <button>Add</button>
+        <br>
+        <br>
+        {% if items_particular %}
+
+            <h2>Category</h2>
+            <ol>
+                {% for item in items_particular %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+
+        {% if items_amount %}
+
+            <h2>Amount</h2>
+            <ol>
+                {% for item in items_amount %}
+                    <li>₹. {{ item }}</li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+
+        {% if items_describe %}
+
+            <h2>Description</h2>
+            <ol>
+                {% for item in items_describe %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+    </form>
+    <footer>
+        Created by Pradeep Sukhwani
+    </footer>
+</body>
+</html>
+{% endblock %}

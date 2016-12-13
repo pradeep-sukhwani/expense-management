@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/styling/main.css">
+</head>
+<body>
+    <form method="Post" autocomplete="on"> 
+        <h1>LOGIN</h1> 
+        
+        <p>
+            <input id="username" name="username" required="required" type="text" value="{{username}}" placeholder="Enter your username" />
+        </p>
+        
+        <div style="color: red">{{username_error}}</div>
+        
+        <p> 
+            <input id="password" name="password" required="required" type="password" value="" placeholder="Enter your password" /> 
+        </p>
+
+        <div style="color: red">{{password_error}}</div>
+        
+        <p class="keeplogin"> 
+            <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+            <label for="loginkeeping">Keep me logged in</label>
+        </p>
+
+        <input type="hidden" name="referer" value="{{referer}}">
+        <p class="login button"> 
+            <input type="submit" value="Let me in" /> 
+        </p>
+
+        <p class="change_link">
+            Not a member yet ?
+            <a href="/signup" class="to_register">Join us</a>
+        </p>
+    </form>
+    <footer>
+        Created by Pradeep Sukhwani
+    </footer>
+</body>
+</html>

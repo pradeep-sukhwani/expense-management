@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create your account</title>
+    <link rel="stylesheet" type="text/css" href="/styling/main.css">
+</head>
+<body>
+    <form method="Post"> 
+        <h1>SIGN UP</h1> 
+        
+        <p> 
+            <input type="text" name="username" required="required" value="{{username}}"" placeholder="Choose your username" />
+        </p>
+
+        <div style="color: red">{{username_error}}</div>
+        
+        <p>
+            <input type="password" name="password" required="required" value="" placeholder="Create a password"/>
+        </p>
+        
+        <div style="color: red">{{password_error}}</div>
+
+        <p>
+            <input type="password" name="verify" required="required" value="" placeholder="Confirm your password"/>
+        </p>
+        
+        <div style="color: red">{{verify_error}}</div>
+
+        <p> 
+            <input type="text" name="email" required="required" value="{{email}}" placeholder="Your current email address"/> 
+        </p>
+
+        <div style="color: red">{{email_error}}</div>
+        
+        <input type="hidden" name="referer" value="{{referer}}">
+        <p class="signin button"> 
+            <input type="submit" value="Create an account" />
+        </p>
+        
+        <p class="change_link">  
+            Already a member ?
+            <a href="/login" class="to_register"> Go and log in </a>
+        </p>
+    </form>
+    <footer>
+        Created by Pradeep Sukhwani
+    </footer>
+</body>
+</html>

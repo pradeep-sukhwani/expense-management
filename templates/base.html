@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Expense Management</title>
+  <link type="text/css" rel="stylesheet" href="/styling/main.css" />
+  <link rel="icon" type="image/png" href="/favicon.ico">
+</head>
+<body>
+  {% if uid == "" %}
+    <div class="login-area">
+       <a class="login-link" href="/login">Login</a>
+       |
+       <a class="login-link" href="/signup">Signup</a>
+    </div>
+  {% else %}
+    <div class="login-area">
+      <span  class="user">{{uid}}</span> (<a class="login-link" href="/logout">Logout</a>)
+    </div>
+  {% endif%}
+  
+  <div>
+  {% block content %}
+  {% endblock %}
+  </div>
+  
+  <br> 
+</body>
+
+</html>

@@ -223,6 +223,9 @@ class FrontPageDefault(MainHandler):
     def get(self):
         self.redirect('/home/')
 
+## using this list in FrontPage class in else statement
+empty_list_for_dict = []
+
 class FrontPage(MainHandler):
     def render_page(self, content, page_id):
         uid = self.read_secure_cookie('user_id')
@@ -233,11 +236,17 @@ class FrontPage(MainHandler):
             if user == None:
                 self.render("content.html", content = content, page_id = page_id, uid = "")
             else:
-                items_particular = self.request.get_all("particular")
-                items_amount = self.request.get_all("amount")
-                items_describe = self.request.get_all("description")
-                self.render("expense.html", items_particular = items_particular,
-                    items_amount = items_amount, items_describe = items_describe,
+                item_date = self.request.get("date")
+                item_particular = self.request.get("particular")
+                item_amount = self.request.get("amount")
+                item_describe = self.request.get("description")
+                new_dict = {}
+                new_dict['date'] = item_date
+                new_dict['particular'] = item_particular
+                new_dict['amount'] = item_amount
+                new_dict['describe'] = item_describe
+                empty_list_for_dict.append(new_dict)
+                self.render("expense.html", empty_list_for_dict = empty_list_for_dict,
                     content = content, page_id = page_id, uid = user.name)
 
     def get(self, newpage):
@@ -273,4 +282,3 @@ class FrontPage(MainHandler):
                         self.redirect('/login')
         else:
             self.render_page(page.content, page_id)
-

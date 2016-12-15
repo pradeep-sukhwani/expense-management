@@ -5,69 +5,84 @@
 <html>
 <head>
     <title>Expense Management</title>
-    <link rel="stylesheet" type="text/css" href="/styling/expense.css">
-    <script>    
-    if(typeof window.history.pushState == 'function') {
-        window.history.pushState({}, "/home");
-    }
-</script>
 </head>
 <body>
     <h1>My Dashboard</h1>
     <form>
-        <input type="text" name="particular" placeholder="Enter category like food, movie, shopping, etc">
-        <input type="text" name="amount" placeholder="Enter amount">
-        <input type="text" name="description" placeholder="Enter description">
-        {% if items_particular %}
-            {% for item in items_particular %}
-                <input type="hidden" name="particular" value="{{item}}">
-            {% endfor %}
-        {% endif %}
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="4">Add an expense</th>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input class="heading" type="text" name="date"></td>
+                    <td><input class="heading" type="text" name="particular"></td>
+                    <td><input class="heading" type="text" name="description"></td>
+                    <td><input class="heading" type="text" name="amount"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <center><button>Add</button></center>
 
-        {% if items_amount %}
-            {% for item in items_amount %}
-                <input type="hidden" name="amount" value="{{item}}">
-            {% endfor %}
-        {% endif %}
+            {% if item_date %}
+                {% for item in item_date %}
+                    <input type="hidden" name="date" value="{{item}}">
+                {% endfor %}
+            {% endif %}
 
-        {% if items_describe %}
-            {% for item in items_describe %}
-                <input type="hidden" name="description" value="{{item}}">
-            {% endfor %}
-        {% endif %}
+            {% if item_particular %}
+                {% for item in item_particular %}
+                    <input type="hidden" name="particular" value="{{item}}">
+                {% endfor %}
+            {% endif %}
 
-        <button>Add</button>
+            {% if item_describe %}
+                {% for item in item_describe %}
+                    <input type="hidden" name="description" value="{{item}}">
+                {% endfor %}
+            {% endif %}
+
+            {% if item_amount %}
+                {% for item in item_amount %}
+                    <input type="hidden" name="amount" value="{{item}}">
+                {% endfor %}
+            {% endif %}
         <br>
         <br>
-        {% if items_particular %}
-
-            <h2>Category</h2>
-            <ol>
-                {% for item in items_particular %}
-                    <li>{{ item }}</li>
-                {% endfor %}
-            </ol>
-        {% endif %}
-
-        {% if items_amount %}
-
-            <h2>Amount</h2>
-            <ol>
-                {% for item in items_amount %}
-                    <li>₹. {{ item }}</li>
-                {% endfor %}
-            </ol>
-        {% endif %}
-
-        {% if items_describe %}
-
-            <h2>Description</h2>
-            <ol>
-                {% for item in items_describe %}
-                    <li>{{ item }}</li>
-                {% endfor %}
-            </ol>
-        {% endif %}
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="4">Expense Sheet</th>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if empty_list_for_dict %}
+                    {% for item in empty_list_for_dict %}
+                        <tr>
+                            <td>{{ ''.join(item['date']) }}</td>
+                            <td>{{ ''.join(item['particular']) }}</td>
+                            <td>{{ ''.join(item['describe']) }}</td>
+                            <td>{{ ''.join(item['amount']) }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
     </form>
     <footer>
         Created by Pradeep Sukhwani
